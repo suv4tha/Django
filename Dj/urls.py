@@ -18,7 +18,8 @@ from django.urls import path
 from Blog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.login, name="login"),
-    path('home/',views.homePage, name="homePage"),
+    path('login', views.login, name="login"),
+    path('',views.homePage, name="homePage"),
     path('delete/<str:number>',views.delete, name="delete"),
+    path('update/<str:number>',views.update, name='update'),
 ]

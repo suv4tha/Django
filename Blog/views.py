@@ -13,6 +13,7 @@ def login(request):
         number=request.POST['number']
         name=request.POST['name']
         userCollection.insert_one({"number":number, "name":name})
+        return redirect('homePage')
     return render(request, "login.html")
 
 
@@ -26,3 +27,13 @@ def delete(request,number):
     print(number," ............................................")
     userCollection.delete_one({"number":number})
     return redirect('homePage')
+
+def update(request,number):
+    userData=userCollection.find_one({'number':number})
+    print(userData)
+    if request.method=="POST":
+        nnumber=request.POST['number']
+        nname=request.POST['name']
+        userCollection.update_one({'number':number},{'$set':{"number":nnumber , "name":nname}})
+        return redirect('homePage')
+    return render(request,'update.html' , {'user':userData})

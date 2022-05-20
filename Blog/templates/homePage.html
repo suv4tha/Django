@@ -7,13 +7,14 @@
     <title>Home</title>
   </head>
   <body>
+    <a href="{% url 'login' %}"> add user</a>
     {% for user in datas %}
 
     <div style="margin: 10px; background-color: aqua">
       <h1>{{ user.name }}</h1>
       <h1>{{ user.number }}</h1>
       <a href="{% url 'delete' number=user.number %}">delete</a>
-      <br /><a href="">update</a>
+      <br /><a href="{% url 'update' number=user.number %}">update</a>
     </div>
     {% endfor %}
   </body>
